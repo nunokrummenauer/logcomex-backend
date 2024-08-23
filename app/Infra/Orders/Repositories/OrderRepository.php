@@ -4,6 +4,7 @@ namespace App\Infra\Orders\Repositories;
 
 use App\Domain\Order\Entities\Order;
 use App\Domain\Order\Interfaces\Repositories\OrderRepositoryInterface;
+use App\Infra\Orders\Models\OrderFilters;
 use App\Infra\Orders\Models\OrderModel;
 
 class OrderRepository implements OrderRepositoryInterface
@@ -15,8 +16,10 @@ class OrderRepository implements OrderRepositoryInterface
         $this->model = new OrderModel();
     }
 
-    public function listAllOrder(Order $entityOrder) 
+    public function listAllOrder($filters)
     {
-        return $this->model->select('*')->toArray();
+        $orderFilters = new OrderFilters($this->model);
+        $orderFilters->mountFilters($filters)->get()->toArray();
+        return $orderFilters;
     }
 }

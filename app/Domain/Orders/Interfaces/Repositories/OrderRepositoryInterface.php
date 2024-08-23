@@ -6,5 +6,5 @@ use App\Domain\Order\Entities\Order;
 
 interface OrderRepositoryInterface
 {
-    public function listAllOrder(Order $entityOrder) ;
+    public function listAllorder(OrderFilters $filters)
 }

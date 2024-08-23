@@ -2,19 +2,26 @@
 
 namespace App\App\Orders\UseCases;
 
-use App\Domain\Order\Entities\Order;
-use App\Infra\Orders\Repositories\OrderRepository;
+use App\Domain\Order\Interfaces\Repositories\OrderRepositoryInterface;
+use Exception;
 
 class GetAllOrdersUseCase
 {
+    protected $orderRepository;
+
+    public function __construct(OrderRepositoryInterface $orderRepository)
+    {
+        $this->orderRepository = $orderRepository;
+    }
     public function run($orderFilters) 
     {
-        $order = new Order();
-        $order->setCpf($orderFilters['cpf']);
-        $order->setDescription($orderFilters['description']);
-        $order->setTrackingCode($orderFilters['tracking_code']);
-        $order->setInvoiceNumber($orderFilters['invoice_number']);
-        $orderRepository = new OrderRepository();
-        $orders = $orderRepository->getAllOrders($order);
+        try{
+            $orders = $this->orderRepository->listAllorder($orderFilters);
+            return $orders;
+        }
+        catch(Exception $e){
+            $e->getMessage();
+        }
+
     }
 }
