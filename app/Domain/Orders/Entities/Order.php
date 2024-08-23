@@ -1,25 +1,28 @@
 <?php
 
-namespace App\Domain\CONTEXT_NAME\Entities;
+namespace App\Domain\Order\Entities;
 
 
-class ContextName
+class Order
 {
   
-    protected $dado1;
-    protected $dado2;
+    protected $amount;
+    protected $customer_cpf;
+    protected $tracking_code;
+    protected $description;
+    protected $invoice_number;
 
     /**
      * @return mixed
      */
-    public function getDado1()
+    public function get()
     {
         return $this->dado1;
     }
 
     /**
      * @param mixed $token
-     * @return **ContextName**
+     * @return **Order**
      */
     public function setDado1($dado1)
     {
