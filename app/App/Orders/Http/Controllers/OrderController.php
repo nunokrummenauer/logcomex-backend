@@ -16,7 +16,7 @@ class OrderController extends BaseController
     }
     public function getAllOrders(Request $request) 
     {
-        dd($request);
+
         $orderFilters = [
             'cpf_customer' => $request->cpf_customer,
             'tracking_code' => $request->tracking_code,

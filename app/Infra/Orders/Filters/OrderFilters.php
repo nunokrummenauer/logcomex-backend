@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Infra\Orders\Models;
+namespace App\Infra\Orders\Filters;
+
+use App\Infra\Orders\Models\OrderModel;
 use Illuminate\Database\Eloquent\Builder;
 
 class OrderFilters
@@ -14,9 +16,8 @@ class OrderFilters
         $this->orderModel = $orderModel;
     }
 
-    public function mountFilters($filterParams): OrderModel
+    public function mountFilters($filterParams)
     {
-        dd($filterParams);
 
         $this->orderQuery = $this->orderModel;
         if (!empty($filterParams['description'])) {
@@ -34,8 +35,7 @@ class OrderFilters
         if (!empty($filterParams['invoice_number'])) {
             $this->mountInvoiceNumberFilter($filterParams['invoice_number']);
         }
-
-        return $this->orderQuery;
+        return $this->orderQuery->get()->toArray();
     }
 
     private function mountDescriptionFilter($filterParams): void

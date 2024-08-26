@@ -2,7 +2,7 @@
 
 namespace App\App\Orders\UseCases;
 
-use App\Domain\Order\Interfaces\Repositories\OrderRepositoryInterface;
+use App\Domain\Orders\Interfaces\Repositories\OrderRepositoryInterface;
 use Exception;
 
 class GetAllOrdersUseCase
@@ -17,6 +17,7 @@ class GetAllOrdersUseCase
     {
         try{
             $orders = $this->orderRepository->listAllorder($orderFilters);
+            dd($orders);
             return $orders;
         }
         catch(Exception $e){

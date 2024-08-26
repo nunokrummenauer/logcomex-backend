@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Order\Interfaces\Repositories;
+namespace App\Domain\Orders\Interfaces\Repositories;
 
-use App\Domain\Order\Entities\Order;
+use App\Infra\Orders\Filters\OrderFilters;
 
 interface OrderRepositoryInterface
 {
-    public function listAllorder(OrderFilters $filters)
+    public function listAllorder(OrderFilters $filters);
 }
